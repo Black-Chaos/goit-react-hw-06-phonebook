@@ -7,19 +7,21 @@ const persistConfig = {
   storage,
 };
 
-
-const contactSlice = createSlice({
-  name: 'contact',
-  initialState: [],
+const contactsSlice = createSlice({
+  name: 'contacts',
+  initialState: {contacts: []},
   reducers: {
     addContact(state, { payload }) {
-      return [...state, {id: nanoid(),...payload}];
+      return {contacts: [...state.contacts, { id: nanoid(), ...payload }]};
     },
     deleteContact(state, { payload }) {
-      return state.filter(({ id }) => id !== payload);
+      return {contacts: state.contacts.filter(({ id }) => id !== payload)};
     },
   },
 });
 
-export const {addContact, deleteContact} = contactSlice.actions;
-export const contactSliceReducer = persistReducer(persistConfig, contactSlice);
+export const { addContact, deleteContact } = contactsSlice.actions;
+export const contactsSliceReducer = persistReducer(
+  persistConfig,
+  contactsSlice.reducer
+);

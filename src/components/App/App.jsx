@@ -4,22 +4,23 @@ import { Filter } from 'components/Filter/Filter';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from 'redux/selectors';
 import { Container } from './App.styled';
+import { addContact } from 'redux/contactsSlice';
 
 // const LS_KEY = 'phone-book';
 
 // const contactsLS = JSON.parse(localStorage.getItem(LS_KEY)) || [];
 
 export function App() {
-  const contacts = useSelector(getContacts());
+  const contacts = useSelector(getContacts);
   const dispatch = useDispatch()
   // const [contacts, setContacts] = useState(contactsLS);
   // const [filter, setFilter] = useState('');
 
   // useEffect(() => localStorage.setItem(LS_KEY, JSON.stringify(contacts)), [contacts]);
 
-  const addContact = contact => {
+  const addNewContact = contact => {
     if (contacts.some(({ name }) => name === contact.name)) return alert(`${contact.name} is already in contacts`);
-    dispatch(contacts);
+    dispatch(addContact(contact));
     return true
   };
 
@@ -39,7 +40,7 @@ export function App() {
         <h1 className="title">Phonebook</h1>
         <Container>
           <div className="form-container">
-            <ContactForm addContact={addContact} />
+            <ContactForm addContact={addNewContact} />
             <Filter
               // val={filter}
               // handleFilter={e => setFilter(e.target.value.toLowerCase())}

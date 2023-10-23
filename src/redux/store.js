@@ -8,12 +8,12 @@ import {
   REHYDRATE,
   persistStore,
 } from 'redux-persist';
-import { contactSliceReducer } from './contactsSlice';
+import { contactsSliceReducer } from './contactsSlice';
 import { filterSlice } from './filterSlice';
 
 export const store = configureStore({
   reducer: {
-    contact: contactSliceReducer,
+    contacts: contactsSliceReducer,
     filter: filterSlice.reducer,
   },
   middleware: getDefaultMiddleware =>
