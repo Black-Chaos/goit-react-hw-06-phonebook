@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import { Form, Label } from './ContactForm.styled';
 
@@ -24,7 +23,6 @@ export function ContactForm({ addContact }) {
   const handleSubmit = e => {
     e.preventDefault();
     const isAdd = addContact({
-      id: nanoid(),
       name,
       number,
     });
